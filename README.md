@@ -1,4 +1,3 @@
 # odd_even_reg
 
-Run install.sh
-Then see example.sh 
+Run install.sh, then see example.sh 
