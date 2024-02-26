@@ -8,7 +8,7 @@ reg_odd_even() {
     c=$(printf "%04d" $vol_index)
     echo Volume $c
 
-    # reorder slices correctly based on .json file 
+    # reorder slices correctly for interleaved acquisition
     python reorder_slices.py data/vol_${c}.nii.gz 
 
     # run anim non rigid registration 
