@@ -23,8 +23,8 @@ reg_odd_even() {
 # run this function in parallel on ALL available volumes on any machines that are ubuntu - ganymede, io, eurus, coffee, izmir, gamakichi, rayan 
 for i in {1..9} 
 do
-    echo $i
-    c=$(printf "%04d" $vol_index)
+    c=$(printf "%04d" $i)
+    echo $c
     reg_odd_even $i data/log_anima_${c}_e_o.log 2>&1  & # register  
 done 
 
