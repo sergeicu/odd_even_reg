@@ -11,7 +11,7 @@ reg_odd_even() {
     # reorder slices correctly for interleaved acquisition
     python reorder_slices.py data/vol_${c}.nii.gz 
 
-    # run anim non rigid registration 
+    # run anima non rigid registration 
     docker run --rm -v $PWD/data/:/data sergeicu/anima sh -c "/anima/animaDenseSVFBMRegistration --sp 1 --bs 3 -o /data/vol_${c}_even_to_odd.nii.gz -r /data/vol_${c}_odd_lin.nii.gz -m /data/vol_${c}_even_lin.nii.gz > /data/log_anima_${c}_e_o.log 2>&1"
 
     # average 
@@ -31,7 +31,6 @@ reg_odd_even() {
 for i in {0..9} 
 do
     c=$(printf "%04d" $i)
-    echo $c
     reg_odd_even $i data/log_anima_${c}_e_o.log 2>&1  & # run for volume 
 done 
 
