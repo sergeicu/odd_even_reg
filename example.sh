@@ -6,7 +6,7 @@ reg_odd_even() {
 
     # prints which volume we are registering 
     c=$(printf "%04d" $vol_index)
-    echo Volume $c
+    echo Processing Volume $c. Output will be called data/vol_${c}_lin_odd_even_merged.nii.gz. Check data/log_anima_${c}_e_o.log for intermediate results.
 
     # reorder slices correctly for interleaved acquisition
     python reorder_slices.py data/vol_${c}.nii.gz 
@@ -17,8 +17,6 @@ reg_odd_even() {
     # average 
     python add.py data/vol_${c}_odd_lin.nii.gz data/vol_${c}_even_to_odd.nii.gz -o data/vol_${c}_lin_odd_even_merged.nii.gz 
 
-    # log success 
-    echo "Created output file data/vol_${c}_lin_odd_even_merged.nii.gz " > data/FINISHED_VOL_${c}.log
 }
 
 
