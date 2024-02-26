@@ -1,4 +1,4 @@
-# a function that splits a volume into odd-even components and register them together
+# this is a bash function that splits a volume into odd-even components and register them together
 reg_odd_even() {
 
     # input volume 
@@ -23,11 +23,11 @@ reg_odd_even() {
 
 
 
-# run this function for ALL volumes
-    # currently it loops for 10 volumes (from 0 to 9)
+# run 'reg_odd_even' function for ALL volumes in 'data' directory 
     # volumes should be labelled as 'vol_XXXX.nii.gz', where X is a number. 
-    # input files will be placed in 'data' directory, 
+    # volumes must be placed in 'data' directory, 
     # output files will be called 'vol_XXXX_lin_odd_even_merged.nii.gz'
+    # below we loop through the first 10 volumes (0..9) -> CHANGE it accordingly 
 for i in {0..9} 
 do
     c=$(printf "%04d" $i)
