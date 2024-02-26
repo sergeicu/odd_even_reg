@@ -31,7 +31,7 @@ reg_odd_even() {
 for i in {0..9} 
 do
     c=$(printf "%04d" $i)
-    reg_odd_even $i data/log_anima_${c}_e_o.log 2>&1  & # run for volume 
+    reg_odd_even $i  & # run for volume 
 done 
 
 
