@@ -13,6 +13,12 @@ reg_odd_even() {
     # reorder slices correctly for interleaved acquisition
     python reorder_slices.py data/vol_${c}.nii.gz 
 
+    # Uncomment this if you want to run isotropic resampling on your files 
+    # WARNING: you must have crkit docker on your system - currently available under 'ganymede' machine
+    docker run --rm -v $PWD/data/:/data ccts3.aws.chboston.org:5151/computationalradiology/crkit crlResampleToIsotropic /data/vol_${c}_odd_lin.nii.gz bspline /data/vol_${c}_odd_lin.nii.gz #-x 1.5 -y 1.5 -z 1.5  # uncomment these to set specific resolution
+    docker run --rm -v $PWD/data/:/data ccts3.aws.chboston.org:5151/computationalradiology/crkit crlResampleToIsotropic /data/vol_${c}_even_lin.nii.gz bspline /data/vol_${c}_even_lin.nii.gz #-x 1.5 -y 1.5 -z 1.5 # uncomment these to set specific resolution
+
+
     # run anima non rigid registration 
     docker run --rm -v $PWD/data/:/data sergeicu/anima sh -c "/anima/animaDenseSVFBMRegistration --sp 1 --bs 3 -o /data/vol_${c}_even_to_odd.nii.gz -r /data/vol_${c}_odd_lin.nii.gz -m /data/vol_${c}_even_lin.nii.gz > /data/log_anima_${c}_e_o.log 2>&1"
 
